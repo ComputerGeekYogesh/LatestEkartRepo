@@ -44,7 +44,7 @@ class GroupController extends Controller
             $group->description = $request->input('description');
             $group->status = $request->input('status') == true ? '1': '0';
             $group->update();
-             return redirect()->back()->with('status','Group Data UPDATED Successfully');
+             return redirect('group')->with('status','Group Data UPDATED Successfully');
         }
             public function delete($id) {
             $group = group::find($id);

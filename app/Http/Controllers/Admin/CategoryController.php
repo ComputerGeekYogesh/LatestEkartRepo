@@ -103,7 +103,7 @@ class CategoryController extends Controller
         $category->status= $request->input('status') == true ? '1':'0';   //* 0->show | 1->hide
         $category-> update();
 
-        return redirect()->back()->with('status','Category Updated Successfully');
+        return redirect('category')->with('status','Category Updated Successfully');
     }
     public function delete($id) {
         $category = category::find($id);

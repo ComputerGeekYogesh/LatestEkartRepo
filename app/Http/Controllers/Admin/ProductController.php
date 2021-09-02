@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Models\subcategory;
+use App\Models\Models\category;
 use App\Models\Models\Products;
+use App\Models\Models\subcategory;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -15,12 +16,14 @@ class ProductController extends Controller
             return view ('admin.collection.product.index')->with('products',$products); //* WITH with method we are passing the $products variable, products = $products
 }
     public function create(){
+    $category =  category::where('status','!=','3')->get();
     $scategory = subcategory::where('status','!=','3')->get();
-    return view ('admin.collection.product.create')->with('scategory',$scategory);
+    return view ('admin.collection.product.create')->with('scategory',$scategory)->with('category',$category);
 }
     public function store(Request $request){
     $products = new Products();
     $products->name = $request->input('name');
+    $products->category_id = $request->input('category_id');
     $products->sub_category_id = $request->input('sub_category_id');
     $products->name = $request->input('name');
     $products->url= $request->input('url');
@@ -65,14 +68,16 @@ class ProductController extends Controller
 
 }
     public function edit($id){
+    $category =  category::where('status','!=','3')->get();
     $scategory = subcategory::where ('status','!=','3')->get();  //* 3= deleted data's | sending $scategory also because there is a subcategory field in the product form which we also sometime required to edit
     $products = Products::find($id);
-    return view('admin.collection.product.edit')->with('scategory',$scategory)->with('products',$products);
+    return view('admin.collection.product.edit')->with('scategory',$scategory)->with('products',$products)->with('category',$category);
 }
 
     public function update(Request $request, $id){
         $products =  Products::find($id);
         $products->name = $request->input('name');
+        $products->category_id = $request->input('category_id');
         $products->sub_category_id = $request->input('sub_category_id');
         $products->name = $request->input('name');
         $products->url= $request->input('url');
@@ -112,7 +117,7 @@ class ProductController extends Controller
         $products->status = $request->input('status') == true ? '1':'0';
 
         $products->update();
-        return redirect()->back()->with('status','Product Details Updated Successfully.!');
+        return redirect('product')->with('status','Product Details Updated Successfully.!');
 
 }
     public function delete($id) {

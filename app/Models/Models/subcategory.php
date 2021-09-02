@@ -2,8 +2,8 @@
 
 namespace App\Models\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class subcategory extends Model
 {
@@ -20,4 +20,11 @@ class subcategory extends Model
     {
         return $this->belongsTo(category::class,'category_id','id');   //*category_id of category is the foreign key which refer to the id of category table
     }
+
+    public function products()
+{
+    return $this->hasMany(Products::class,'sub_category_id','id')->where('status',0);
 }
+}
+
+

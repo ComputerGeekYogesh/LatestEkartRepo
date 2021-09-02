@@ -1,5 +1,5 @@
 {{--<div class="container-for-admin">--}}
-
+{{--
     <!-- Bootstrap Bundle with Popper for dropdown list showing-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
@@ -64,9 +64,9 @@
                 <i class="fab fa-github mr-2"></i>MDB GitHub
               </a>
             </li> --}}
-            <li class="nav-item">
-            <div class="dropdown">
-                     <button class="nav-link border border-light rounded waves-effect dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            {{-- <li class="nav-item">
+            <div class="dropdown"> --}}
+                     {{-- <button class="nav-link border border-light rounded waves-effect dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                   {{Auth::User()->name. ' '. Auth::User()->lastname}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -81,13 +81,13 @@
                         @csrf
                     </form>
                 </div>
-              </div>
+              </div> --}}
 
-        </li>
+        {{-- </li>
           </ul>
 
         </div>
 
       </div>
-    </nav>
-    <!-- Navbar -->
+    </nav> --}}
+    <!-- Navbar --> 

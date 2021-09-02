@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid mt-5 ">
+<div class="container-fluid">
 
       <!-- Heading -->
       <div class="card mb-4 wow fadeIn">
@@ -74,7 +74,13 @@
              <div class = "col-md-12">
              <div class = "card">
                 <div class = "card-body">
+                    @if (session('status'))
 
+                    <div class="alert alert-success" role="alert">
+                       {{ session('status') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+              @endif
                     <table id = "datatable1" class = "table table-bordered table-striped">
 
                             <thead>

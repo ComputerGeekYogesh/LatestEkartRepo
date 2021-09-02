@@ -28,19 +28,36 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    public function redirectTo()
+    // public function redirectTo()
+    // {
+    //     if(Auth::user()->role_as == 'admin') // for admin login
+    //     {
+    //       return 'dashboard';
+    //     }
+    //     if(Auth::user()->role_as == 'vendor') // for vendor login
+    //     {
+    //       return 'vendor-dashboard';
+    //     }
+    //     if(Auth::user()->role_as == 'NULL') // normal user login
+    //     {
+    //       return 'home';
+
+    //     }
+    // }
+
+    public function authenticated()
     {
         if(Auth::user()->role_as == 'admin') // for admin login
         {
-          return 'dashboard';
+          return redirect('dashboard')->with('status','Welcome to Dashboard');
         }
-        if(Auth::user()->role_as == 'vendor') // for vendor login
+        elseif(Auth::user()->role_as == 'vendor') // for vendor login
         {
-          return 'vendor-dashboard';
+          return redirect('vendor-dashboard')->with('status','Welcome to Dashboard');
         }
-        if(Auth::user()->role_as == 'NULL') // normal user login
+        elseif(Auth::user()->role_as == NULL) // normal user login
         {
-          return 'home';
+          return redirect()->back()->with('status','You are successfully logged in');
 
         }
     }

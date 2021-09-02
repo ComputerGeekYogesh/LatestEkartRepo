@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
-
 use App\Models\User;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class RegisteredController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // $users = User::paginate(2);  custom pagination
         // $users = User::all();
-        $users = User::where('role_as', Request::input('roles'))->get();
+        $users = User::where('role_as', $request->input('roles'))->get();
 
          return view('admin.users.index')->with('users',$users);
     }
@@ -26,11 +24,11 @@ class RegisteredController extends Controller
     public function updaterole (Request $request , $id)
     {
         $user = User::find($id);
-        $user->name= $request->Input('name');
-        $user->role_as= $request->Input('roles');
+        $user->name= $request->input('name');
+        $user->role_as= $request->input('roles');
         $user->update();
 
-        return redirect()->back()->with('status','Role is Updated');
+        return redirect('registered-user')->with('status','Role is Updated');
     }
 }
 

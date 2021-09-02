@@ -2,7 +2,7 @@
 @extends ('layouts.admin')
 
 @section('content')
-<div class="container-fluid mt-5">
+
         <div class="row">
         <div class="col-md-12 ">
             <div class="card ">
@@ -13,11 +13,19 @@
          <a href="{{url('group-add')}}" class="badge bg-primary p-2 text-white float-right "> ADD Group</a>
     </h6>
 </div></div></div></div>
+<div class="container-fluid">
     <div class="row mt-3
     ">
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-body">
+                    @if (session('status'))
+
+                    <div class="alert alert-success" role="alert">
+                       {{ session('status') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+              @endif
             <table class="table table-striped table-bordered">
                 <thead>
                     <th> ID</th>

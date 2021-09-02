@@ -39,4 +39,9 @@ class Products extends Model
      {
          return $this->belongsTo(subcategory::class,'sub_category_id','id');   //*sub_category_id is the foreign key  of products table which refer to the id of subcategory table
      }
+
+     public function category()
+     {
+         return $this->belongsTo(category::class,'category_id','id');   //*category_id is the foreign key  of products table which refer to the id of category table
+     }
 }

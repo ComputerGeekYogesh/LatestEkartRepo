@@ -21,6 +21,7 @@
 
                 <div class="row">
                     <div class="col-md-12 mb-3">
+                        <div class="product_data">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="border">
@@ -52,12 +53,25 @@
                 <div class="py-3">
                     <div class="row">
                         <div class="col-md-2 col-3">
-                            <input type ="number" class="qty-input form-control" value="1" min="1" max="100"/>
+                            <input type = "hidden" class="product_id" value="{{ $products->id}}">
+                            <input type = "number" class="qty-input form-control" value="1" min="1" max="100"/>
                         </div>
-                        <div class="col-md-6 col-6">
-                            <button type ="button" class="add-to-cart btn btn-danger m-0 py-2 px-3">Add to Cart</button>
+                        <div class="col-md-3 col-6">
+                            <button type ="button" class="add-to-cart-btn btn btn-danger m-0 py-2 px-3">Add to Cart</button>
                         </div>
-                </div> </div> 
+                        <div class="col-md-4">
+                            @guest
+                            <button type="button" data-toggle="modal" data-target="#LoginModal" class="btn btn-success m-0 py-2 ">
+                             <i class= "fa fa-heart"></i> Wishlist
+                            </button>
+                            @else
+                            <button type="button" class="add-to-wishlist-btn btn btn-success m-0 py-2">
+                             <i class= "fa fa-heart"></i>  Wishlist
+                            </button>
+
+                             @endguest
+                        </div>
+                </div> </div>
                 <div class="product-small-description py-2 border-top">
                     {!! $products->small_description !!}
                   </div>
@@ -87,18 +101,67 @@
                                   <div class= "card-body">
                                       {!! $products->p_details !!}
                             </div>   </div> </div>  </div>   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 </section>
+
+
+<section class ="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class ="font-weight-bold">Related Products</h4>
+                <hr>
+                <div class="owl-carousel owl-theme">
+                    @foreach ($products->subcategory->products as $item)
+                    <div class="item">
+                        <div class="card border">
+                            <div class="card-body">
+                                <img src="{{asset('uploads/products/'.$products->image)}}" class="w-100"alt="product Image">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6>{{$item->name}}</h6>
+                                        <hr>
+                                      </div>
+                                        <div class="col-md-6">
+                                            <h6>Rs: {{number_format($item->offer_price)}}</h6>
+
+                                          </div>
+
+                                            <div class="col-md-6">
+                                                <h6> <s>Rs: {{number_format($item->original_price)}} </s> </h6>
+
+                                              </div>
+
+                                                <div class="col-md-12">
+                                                   <a href="" class="btn btn-block btn-primary">VIEW DETAILS</a>
+                                                  </div>  </div>  </div>  </div>
+                                                </div>    @endforeach  </div>  </div>  </div>  </div> </section>
+
+
 @endsection
+
+@section('script')
+<script>
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+</script>
+
+
+@endsection
+
+
+
+

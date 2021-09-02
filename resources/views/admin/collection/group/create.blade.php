@@ -2,16 +2,17 @@
 
 @section('content')
 
-<div class="container-fluid mt-5">
+
     <div class="row">
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-body">
-                    <h6> Collection / Group</h6>
+                    <h6 class= "mb-0"> Collection / Group</h6>
                 </div>
             </div>
             </div>
             </div>
+            <div class="container-fluid">
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card ">

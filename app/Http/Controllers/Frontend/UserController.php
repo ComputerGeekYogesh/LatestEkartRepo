@@ -18,7 +18,7 @@ class UserController extends Controller
         $user_id =  Auth::user()->id;
         $user = User::findOrFail($user_id);
         $user->name = $request->input('fname');
-        $user->lname = $request->input('lname');
+        $user->last_name = $request->input('lname');
         $user->address1 = $request->input('address1');
         $user->address2 = $request->input('address2');
         $user->city = $request->input('city');

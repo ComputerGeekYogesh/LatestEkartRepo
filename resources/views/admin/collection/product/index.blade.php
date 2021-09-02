@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container-fluid mt-5">
+
         <div class="row ">
         <div class="col-md-12">
             <div class="card ">
@@ -14,20 +14,24 @@
          <a href="{{url('add-products')}}"  class="badge bg-primary p-2 text-white float-right "> ADD Products</a>
     </h6>
 </div></div></div></div>
+<div class="container-fluid">
 <div class="row mt-3
 ">
     <div class="col-md-12">
         <div class="card ">
             <div class="card-body">
                 @if (session('status'))
-                  <h6> {{ session('status') }} </h6>
-            @endif
+                <div class="alert alert-success" role="alert">
+                   {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+          @endif
         <table class="table table-striped table-bordered">
             <thead>
                 <th> ID</th>
                 <th> Name</th>
-                <th> Sub Category Name</th>
-
+                <th> Category </th>
+                <th> Sub Category </th>
                 <th> Image</th>
                 <th> Show/Hide</th>
                 <th> Action</th>
@@ -37,6 +41,7 @@
                 <tr>
                     <td>{{ $item->id}}</td>
                 <td>{{ $item->name}}</td>
+                <td>{{ $item->category->name}}</td>
                 <td>{{ $item->subcategory->name}}</td>
                 <td>
                     <img src="{{ asset('uploads/products/'.$item->image)}}" alt="Product Image" width="50px"/>

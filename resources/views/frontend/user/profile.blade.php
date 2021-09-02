@@ -26,7 +26,7 @@ My Profile
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Last Name</label>
-                            <input type="text" name="lname" class="form-control" value = "{{Auth::user()->lname}}">
+                            <input type="text" name="lname" class="form-control" value = "{{Auth::user()->last_name}}">
                         </div>
                     </div>
 

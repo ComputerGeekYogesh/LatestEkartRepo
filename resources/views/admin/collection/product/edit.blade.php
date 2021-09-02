@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid mt-5">
+
     <div class="row ">
     <div class="col-md-12">
         <div class="card ">
@@ -12,7 +12,7 @@
     <a href="{{url('product')}}" class="badge bg-danger p-2 text-white float-right  "> BACK</a>
 </h6>
 </div></div></div></div>
-
+<div class="container-fluid">
 <div class="row mt-3
 ">
 <div class="col-md-12">
@@ -45,13 +45,25 @@
             <div class="tab-content border p-3" id= "myTabContent">
                 <div class="tab-pane fade show active" id="product" role="tabpanel">
                     <div class="row mt-3">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Product Name</label>
                             <input type ="text" name="name" value="{{$products->name}}" class="form-control" placeholder=" Product Name" required>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Select Category </label>
+                            <select name="category_id" class="form-control" required>
+                                <option value = "{{$products->category_id}}"> {{$products->category->name}}  </option>
+
+                                @foreach ($category as $cateitem)
+                                <option value = "{{$cateitem->id}}">{{$cateitem->name}} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Select Sub-Category  (Eg: Brands)</label>
                             <select name="sub_category_id" class="form-control" required>

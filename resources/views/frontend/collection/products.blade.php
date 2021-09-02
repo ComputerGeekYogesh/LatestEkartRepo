@@ -23,29 +23,69 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mb-3">
+
+        </div>
+
+
+        <div class="col-md-3">
+            <form action="{{URL::current()}}" method="GET">
+            <div class ="card">
+                <div class="card-header">
+                    <h5>Brands
+                        <button type="submit" class="btn btn-primary btn-sm float-right">Filter</button>
+                    </h5>
+                </div>
+                    <div class="card-body">
+                        @foreach ( $scategorylist as $itemcate)
+                        @php
+                        $checked = [];
+                        if(isset($_GET['filterbrand']))
+                        {
+                            $checked = $_GET['filterbrand'];
+                        }
+
+                        @endphp
+
+                        <div class="mb-1">
+                            <input type="checkbox" name="filterbrand[]" value="{{$itemcate->name}}"
+                            @if (in_array($itemcate->name, $checked )) checked @endif />
+                            {{$itemcate->name}}
+                        </div>
+                        @endforeach
+                </div>
+            </div>
+    </form>
+    </div>
+
+        <div class="col-md-9">
             <span class="font-weight-bold sort-font">Sort By</span>
             <a href ="{{URL::current()}}" class="sort-font">All </a>   {{--URL model fetches the current page url --}}
             <a href ="{{URL::current()."?sort=price_asc"}}" class="sort-font">Price - Low to High </a>
             <a href ="{{URL::current()."?sort=price_desc"}}" class="sort-font">Price - High to Low </a>
             <a href ="{{URL::current()."?sort=newest"}}" class="sort-font">Newest </a>
             <a href ="{{URL::current()."?sort=popularity"}}" class="sort-font">Popularity </a>
-
-
-
-        </div>
-
-
-
-        <div class="col-md-12">
             <div class="row">
            @foreach ($products as $product_item)
             <div class="col-md-12  mt-2">
-                <div class ="card">
+                <div class ="card product_data">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="">
                                     <img src="{{asset('uploads/products/'.$product_item->image)}}" width="100" height="200" class="w-100"alt="">
+                                </div>
+                                <div class="wishlist-content">
+                                    <input type="hidden" class="product_id" value="{{ $product_item->id }}">
+                                   @guest
+                                   <button type="button" data-toggle="modal" data-target="#LoginModal" class="btn btn-success my-3">
+                                    <i class= "fa fa-heart"></i> Wishlist
+                                   </button>
+                                   @else
+                                   <button type="button" class="add-to-wishlist-btn btn btn-success my-3">
+                                    <i class= "fa fa-heart"></i>  Wishlist
+                                   </button>
+
+                                    @endguest
                                 </div>
                             </div>
                             <div class="col-md-7 ">
